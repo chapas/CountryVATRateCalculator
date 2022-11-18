@@ -29,7 +29,7 @@ namespace CountryVATCalculator
                 .Enrich.WithProperty(nameof(Application), Application)
                 .Enrich.WithProperty(nameof(Version), Version)
                 .Enrich.FromLogContext()
-                .CreateBootstrapLogger();
+                .CreateLogger();
 
             try
             {
@@ -51,14 +51,7 @@ namespace CountryVATCalculator
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog(
-                (context, services, configuration) => configuration
-                    .ReadFrom.Configuration(context.Configuration)
-                    .ReadFrom.Services(services)
-                    .Enrich.FromLogContext()
-                    .Enrich.WithProperty(nameof(Application), Application)
-                    .Enrich.WithProperty(nameof(Version), Version)
-                )
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

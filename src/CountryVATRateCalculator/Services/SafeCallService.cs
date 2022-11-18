@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CountryVATCalculator.Commands;
 using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace CountryVATCalculator.Services
 {
@@ -23,7 +24,6 @@ namespace CountryVATCalculator.Services
             {
                 using (_logger.BeginTimedOperation(command.Metadata.Name, identifier: command.Metadata.CorrelationId.ToString()))
                 {
-                    _logger.Information("Call invoked");
                     await command.Func.Invoke();
                 }
             }
@@ -41,7 +41,6 @@ namespace CountryVATCalculator.Services
             {
                 using (_logger.BeginTimedOperation(command.Metadata.Name, identifier: command.Metadata.CorrelationId.ToString()))
                 {
-                    _logger.Information("Call invoked");
                     return await command.Func.Invoke();
                 }
             }

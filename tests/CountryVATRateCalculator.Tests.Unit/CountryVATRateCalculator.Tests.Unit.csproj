@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CountryVATRateCalculator\CountryVATCalculator.csproj" />
+    <ProjectReference Include="..\..\src\CountryVATRateCalculator\CountryVATCalculator.csproj" />
   </ItemGroup>
 
 </Project>
